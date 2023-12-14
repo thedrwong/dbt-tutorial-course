@@ -33,3 +33,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 models: # in the models folder
   lessons: # for the lessons
     +materialized: table # plus sign means it is a configuration and not a file path
+    +persist_docs: # writes all the descriptions from the yaml files to the big query table metadata
+      relation: true
+      columns: true
