@@ -7,14 +7,40 @@ models:
       - name: product_id
         description: "primary key"
         tests:
-          - not_null
-          - unique
+          - primary_key:
+              severity: error
+              where: "department = 'Men'" # this is here just to demonstrate a where clause
+          - not_null:
+              severity: error
+          - unique:
+              severity: error
 
       - name: cost
-        description: ""
+        description: "How much the product costs the business to purchase"
+        tests: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
 
       - name: retail_price
-        description: ""
+        description: "How much the product retails for on the online store"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+          - dbt_utils.expression_is_true:
+              name: retail_price_greater_than_cost
+              expression: ">= cost"
+              where: "retail_price is not null"
 
       - name: department
-        description: ""
+        description: "Whether the item is Menswear or Womenswear"
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - "Men"
+                - "Women"
+              # quote defaults to true, but this just shows how you could set it; set to false for non-string values
+              quote: true
+              severity: error

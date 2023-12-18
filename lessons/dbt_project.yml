@@ -36,3 +36,10 @@ models: # in the models folder
     +persist_docs: # writes all the descriptions from the yaml files to the big query table metadata
       relation: true
       columns: true
+    +hours_to_expiration: 168 # sets an expiration date on the table in big query expire table when data is stale
+
+tests:
+  lessons:
+    +severity: warn # set the default severity of errors to warn
+    marts:
+      +severity: error # make everything in your marts to be errors
