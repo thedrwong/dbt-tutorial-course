@@ -37,6 +37,8 @@ models: # in the models folder
       relation: true
       columns: true
     +hours_to_expiration: 168 # sets an expiration date on the table in big query expire table when data is stale
+    intermediate:
+      +tags: ['test']
 
 tests:
   lessons:

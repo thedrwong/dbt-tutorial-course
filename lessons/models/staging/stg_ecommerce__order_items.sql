@@ -1,3 +1,12 @@
+{{
+	config(
+		tags=[
+			'test',
+			'clms'
+		]
+	)
+}}
+
 WITH source AS (
 	SELECT *
 

@@ -1,0 +1,12 @@
+lessons:
+  target: production
+  outputs:
+    dataset: dbt_production
+    job_execution_timeout_seconds: 300
+    job_retries: 1
+    location: US
+    method: oauth
+    priority: interactive
+    project: high-codex-406100
+    threads: 60
+    type: bigquery

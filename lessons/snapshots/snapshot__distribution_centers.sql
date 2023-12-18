@@ -3,6 +3,7 @@
 {# tell it what attributes to track change on #}
 {{
     config(
+      enabled=false,
       target_schema='dbt_snapshots',
       unique_key='id',
       strategy='check', 
